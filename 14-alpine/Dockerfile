@@ -6,6 +6,9 @@ RUN apk add python2 make g++ dpkg wget --no-cache && \
     dpkg --force-architecture -i apache-pulsar-client*.deb
 
 COPY docker-entrypoint.sh /usr/local/bin/
+RUN chmod 777 /usr/local/bin/docker-entrypoint.sh \
+    && ln -s /usr/local/bin/docker-entrypoint.sh /
+
 ENTRYPOINT ["docker-entrypoint.sh"]
 
 CMD [ "node" ]
